@@ -142,4 +142,8 @@
 </footer>
 <script>
 const burger=document.getElementById('burger'),menu=document.getElementById('menu');
-burger.addEventListener('click',()=>{const open=menu.classList.toggle('open');burger.classList.toggle('x',open);burger.s
+burger.addEventListener('click',()=>{const open=menu.classList.toggle('open');burger.classList.toggle('x',open);burger.setAttribute('aria-expanded',open)});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.classList.remove('x');burger.setAttribute('aria-expanded','false')}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script></body></html>
